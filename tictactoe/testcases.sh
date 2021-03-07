@@ -1,8 +1,8 @@
 #!/bin/bash
 declare -A M
-declare -A feet
-declare -A msgs
-msgs['<p id="msg"></p>']='<empty>'
+#declare -A feet
+#declare -A msgs
+#msgs['<p id="msg"></p>']='<empty>'
 declare -A notchk
 for f in *.html
 do M["$f"]=0

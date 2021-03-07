@@ -1,4 +1,7 @@
 # gawk
+BEGIN{
+	MSGS["<p id=\"msg\"></p>"]="empty"
+}
 function fail(m){
 	X++
 	print "\x1b[31m"m"\x1b[0m"
@@ -22,7 +25,10 @@ inboard{
 	if(!length)wa="   "
 	else if(length==1)wa=$0"  "
 	else if(length==2)wa=$0" "
-		match($0,/^([ XO]|<a [^>]+>[XO]<\/a>)([ XO]|<a [^>]+>[XO]<\/a>)([ XO]|<a [^>]+>[XO]<\/a>)$/,BRD)
+	match($0,/^([ XO]|<a [^>]+>[XO]<\/a>)([ XO]|<a [^>]+>[XO]<\/a>)([ XO]|<a [^>]+>[XO]<\/a>)$/,M)
+	BRD[inboard*3-3]=M[1]
+	BRD[inboard*3-2]=M[2]
+	BRD[inboard*3-1]=M[3]
 	gsub(/( |<a [^>]+>[XO]<\/a>)/,"_")
 	if(!length)S=S"___"
 	else if(length==1)S=S $0"__"
@@ -37,9 +43,9 @@ inboard{
 	inboard=0
 	next
 }
-/<p id="msg">/{
-if($0 in MSGS)fail("Msg duplicated in "FILENAME": "$0)
-MSGS[$0]=1
+/ id="msg"/{
+if($0 in MSGS)fail("Msg duplicated from "MSGS[$0]" in "FILENAME": "$0)
+else MSGS[$0]=FILENAME
 MSG=$0
 next
 }
