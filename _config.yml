@@ -1,3 +1,0 @@
----
-include: ["tictactoe/_*.html"]
-exclude: ["*.awk"]
