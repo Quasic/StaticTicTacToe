@@ -101,9 +101,10 @@ fpass(){
 		fi
 	fi
 	#count of x's and o's should be = unless computer first, then one more x
+	#shellcheck disable=SC2154
 	if [ "$oneMoreX" = 1 ]
 	then
-		if [ "${C[x]}" -ne "$((${C[o]}+1))" ]
+		if [ "${C[x]}" -ne "$((C[o]+1))" ]
 		then
 			warn "${C[x]} x's, but ${C[o]} o's (should be 1 more x) in $1"
 			((p++))
