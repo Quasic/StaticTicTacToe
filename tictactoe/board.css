@@ -1,5 +1,7 @@
 #board {
+  /* stylelint-disable font-family-no-duplicate-names */
   font-family: monospace, monospace;
+  /* stylelint-enable font-family-no-duplicate-names */
   font-size: 4em;
   width: 3em;
   margin: auto;
